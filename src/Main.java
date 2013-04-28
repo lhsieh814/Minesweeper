@@ -1,10 +1,5 @@
 import java.util.Random;
 
-/**
- * User: lena
- * Date: 2013-04-23
- */
-
 public class Main {
 
     public static final int LENGTH = 10;
@@ -15,13 +10,6 @@ public class Main {
     public static void main (String[] args){
 
         Space[][] grid = new Space[LENGTH][HEIGHT];
-
-        // Initialize grid with EMPTY spaces
-        for(int i = 0; i<grid.length; i++){
-            for(int j = 0; j<grid[0].length; j++){
-                grid[i][j] = new Space(Categorize.Type.EMPTY, 0);
-            }
-        }
 
         Random random = new Random();
         for (int i= 0; i<NUM_BOMBS; i++){

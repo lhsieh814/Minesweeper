@@ -1,8 +1,12 @@
 /**
- * User: lena
- * Date: 2013-04-23
+ * A space object represents a tile on the board.
+ * Each space can be categorized as either one of the type:
+ * 		-EMPTY (numbered 0)
+ * 		-NUMBER (numbered from 1 to 8)
+ * 		-BOMB (numbered -1)
+ * @author Lena
+ *
  */
-
 public class Space {
 
     private Categorize.Type type;
