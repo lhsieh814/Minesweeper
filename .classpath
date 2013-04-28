@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+<<<<<<< HEAD
 	<classpathentry kind="src" path="/Minesweeper/src"/>
 	<classpathentry kind="output" path="bin"/>
+=======
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="out/production/Minesweeper"/>
+>>>>>>> 8dea44b3705f974532a80b0a993c9fce58fe879a
 </classpath>
