@@ -36,4 +36,8 @@ public class Space {
     public void setNum(int num) {
         this.num = num;
     }
+
+    public String toString() {
+        return Integer.toString(num);
+    }
 }

@@ -1,35 +1,32 @@
-import java.util.Random;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main {
 
-    public static final int LENGTH = 10;
-    public static final int HEIGHT = 8;
-    public static final int SPACES = LENGTH * HEIGHT;
-    public static final int NUM_BOMBS = 10;
+	public static void main(String[] args) {
+		
+        Minesweeper minesweeper = new Beginner();
+		Board board = new Board(minesweeper);
+        board.printOut();
 
-    public static void main (String[] args){
+        System.out.println();
 
-        Space[][] grid = new Space[LENGTH][HEIGHT];
+        board.plantBombs();
+        board.printOut();
 
-        Random random = new Random();
-        for (int i= 0; i<NUM_BOMBS; i++){
-            int j= random.nextInt(SPACES);
-            int h = j / LENGTH;
-            int l = j % LENGTH;
-            grid[l][h] = new Space(Categorize.Type.BOMB, -1);
-        }
+        System.out.println();
 
-        toString(grid);
+        board.generateNumbers();
+        board.printOut();
 
-    }
+        MinesweeperFrame minesweeperFrame = new MinesweeperFrame();
 
-    public static void toString(Space[][] grid){
-        for(int i = 0; i<grid.length; i++){
-            System.out.println();
-            for(int j = 0; j<grid[0].length; j++){
-                System.out.print(grid[i][j].getType().toString() + " , ");
-            }
-        }
-    }
+        minesweeperFrame.setTitle("Minesweeper");
+        minesweeperFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        minesweeperFrame.setSize(500, 500);
+        minesweeperFrame.setVisible(true);
+        minesweeperFrame.setBackground(Color.white);
+
+	}
 
 }
