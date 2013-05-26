@@ -1,4 +1,4 @@
-package src.main.java;
+package game;
 
 import java.util.Arrays;
 import java.util.Random;

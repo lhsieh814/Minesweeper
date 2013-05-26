@@ -1,4 +1,4 @@
-package src.main.java;
+package game;
 
 public class Categorize {
 

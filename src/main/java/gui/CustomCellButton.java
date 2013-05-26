@@ -1,4 +1,4 @@
-package src.main.java;
+package gui;
 
 import javax.swing.JButton;
 import java.awt.*;

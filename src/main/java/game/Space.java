@@ -1,4 +1,4 @@
-package src.main.java;
+package game;
 
 /**
  * A space object represents a tile on the board.

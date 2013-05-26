@@ -1,4 +1,6 @@
-package src.main.java;
+package levels;
+
+import game.Minesweeper;
 
 public class Intermediate implements Minesweeper {
 
@@ -22,7 +24,6 @@ public class Intermediate implements Minesweeper {
         return bombs;
     }
 
-    @Override
     public void check() {
 
     }

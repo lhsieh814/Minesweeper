@@ -1,4 +1,5 @@
-package src.main.java;
+package gui;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -51,26 +52,22 @@ public class MinesweeperFrame {
         for (int i = 0; i < 81; i++) {
             CustomCellButton cellButton = new CustomCellButton();
             cellButton.addMouseListener(new MouseListener() {
-                @Override
+                
                 public void mouseClicked(MouseEvent mouseEvent) {
                     System.out.println("CLICK");
                 }
 
-                @Override
                 public void mousePressed(MouseEvent mouseEvent) {
                     System.out.println("PRESSED");
                 }
 
-                @Override
                 public void mouseReleased(MouseEvent mouseEvent) {
                     System.out.println("RELEASED");
                 }
 
-                @Override
                 public void mouseEntered(MouseEvent mouseEvent) {
                 }
 
-                @Override
                 public void mouseExited(MouseEvent mouseEvent) {
                 }
 

@@ -1,4 +1,9 @@
-package src.main.java;
+
+
+import levels.Beginner;
+import game.Board;
+import game.Minesweeper;
+import gui.MinesweeperFrame;
 
 public class Main {
 
