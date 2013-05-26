@@ -21,7 +21,6 @@ public class CustomCellButton extends JButton {
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(paint);
-//        g2.fill(rectangle);
 //        g2.fillRect(0,0,38,38);
         super.paintComponent(g);
     }
