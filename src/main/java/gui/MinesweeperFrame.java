@@ -21,7 +21,7 @@ public class MinesweeperFrame {
         jFrame.setSize(400, 450);
         jFrame.setBackground(Color.white);
         jFrame.setLayout(new BorderLayout());
-        jFrame.setResizable(false);
+//        jFrame.setResizable(false);
 
         initPanels();
 
@@ -47,7 +47,6 @@ public class MinesweeperFrame {
     private JPanel createGridPanel() {
         JPanel jPanel = new JPanel(new GridLayout(9, 9));
         jPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
-
 
         for (int i = 0; i < 81; i++) {
             CustomCellButton cellButton = new CustomCellButton();

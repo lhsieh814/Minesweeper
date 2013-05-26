@@ -1,7 +1,11 @@
 package gui;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class CustomCellButton extends JButton {
 
@@ -11,7 +15,14 @@ public class CustomCellButton extends JButton {
         setFocusPainted(false);
         setBorderPainted(false);
         setOpaque(false);
-
+//        try {
+//        	Class<? extends CustomCellButton> s = getClass();
+//        	Image img = ImageIO.read(getClass().getResource("resources/bomb.jpg"));
+//        	setIcon(new ImageIcon(img));
+//        } catch (IOException e) {
+//        	System.out.println("Can't get the image.");
+//        }
+        
     }
 
     @Override
