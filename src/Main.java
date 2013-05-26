@@ -1,10 +1,10 @@
 
 public class Main {
 
-	public static void main(String[] args) {
-		
+    public static void main(String[] args) {
+
         Minesweeper minesweeper = new Beginner();
-		Board board = new Board(minesweeper);
+        Board board = new Board(minesweeper);
         board.printOut();
 
         System.out.println();
@@ -19,6 +19,6 @@ public class Main {
 
         MinesweeperFrame minesweeperFrame = new MinesweeperFrame();
 
-	}
+    }
 
 }

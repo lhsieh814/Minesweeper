@@ -3,10 +3,12 @@ import java.awt.*;
 
 public class CustomCellButton extends JButton {
 
-    public CustomCellButton(String label) {
-        super(label);
-        setPreferredSize(new Dimension(10,10));
+    public CustomCellButton() {
+        setPreferredSize(new Dimension(41,41));
         setContentAreaFilled(false);
+        setFocusPainted(false);
+        setBorderPainted(false);
+        setOpaque(false);
 
     }
 
@@ -14,12 +16,19 @@ public class CustomCellButton extends JButton {
     protected void paintComponent(Graphics g) {
         g.setColor(Color.BLUE);
 
-        GradientPaint paint = new GradientPaint(getWidth()/2, getHeight()/2, g.getColor(),
-                getWidth()/2, 0, Color.GREEN, true);
+        GradientPaint paint = new GradientPaint(0, 0, g.getColor(),
+                0, 0, Color.GREEN, false);
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setPaint(paint);
-        g2.fillRect(0, 0, getSize().width-1, getSize().height-1);
+//        g2.fill(rectangle);
+//        g2.fillRect(0,0,38,38);
         super.paintComponent(g);
+    }
+
+    @Override
+    protected void paintBorder(Graphics g) {
+        g.setColor(Color.BLACK);
+        g.drawRect(0, 0, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());
     }
 }
