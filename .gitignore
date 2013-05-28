@@ -6,13 +6,16 @@ bin
 *.war
 *.ear
 
-# IntelliJ
-.idea/*
+# Maven
+log/
+target/
 
-######################
+# IntelliJ
+.idea/
+*.iml
+*.iws
+
 # Eclipse
-######################
- 
 *.pydevproject
 .project
 .metadata
