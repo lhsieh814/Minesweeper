@@ -51,7 +51,7 @@ public class MinesweeperFrame {
         for (int i = 0; i < 81; i++) {
             CustomCellButton cellButton = new CustomCellButton();
             cellButton.addMouseListener(new MouseListener() {
-                
+
                 public void mouseClicked(MouseEvent mouseEvent) {
                     System.out.println("CLICK");
                 }
@@ -71,6 +71,7 @@ public class MinesweeperFrame {
                 }
 
             });
+
             jPanel.add(cellButton);
         }
 
