@@ -1,4 +1,4 @@
-package game;
+package levels;
 
 public interface Minesweeper {
 

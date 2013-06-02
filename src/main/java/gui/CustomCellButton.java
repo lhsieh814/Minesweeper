@@ -15,28 +15,29 @@ public class CustomCellButton extends JButton {
         setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
-        setOpaque(false);
-        try {
-            Image img = ImageIO.read(getClass().getClassLoader().getResource("bomb.jpg"));
-            setIcon(new ImageIcon(img));
-        } catch (IOException e) {
-            System.out.println("Can't get the image.");
-        }
+        setOpaque(true);
+        setContentAreaFilled(false);
+//        try {
+//            Image img = ImageIO.read(getClass().getClassLoader().getResource("flag.jpg"));
+//            setIcon(new ImageIcon(img));
+//        } catch (IOException e) {
+//            System.out.println("Can't get the image.");
+//        }
 
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        g.setColor(Color.BLUE);
-
-        GradientPaint paint = new GradientPaint(0, 0, g.getColor(),
-                0, 0, Color.GREEN, false);
-
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setPaint(paint);
-//        g2.fillRect(0,0,38,38);
-        super.paintComponent(g);
-    }
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        g.setColor(Color.BLUE);
+//
+////        GradientPaint paint = new GradientPaint(getWidth(), getHeight(), g.getColor(),
+////                getWidth(), getHeight(), Color.GREEN, false);
+//
+//        Graphics2D g2 = (Graphics2D) g;
+////        g2.setPaint(paint);
+////        g2.fillRect(0,0,38,38);
+//        super.paintComponent(g);
+//    }
 
     @Override
     protected void paintBorder(Graphics g) {

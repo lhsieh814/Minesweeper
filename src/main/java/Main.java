@@ -2,7 +2,7 @@
 
 import levels.Beginner;
 import game.Board;
-import game.Minesweeper;
+import levels.Minesweeper;
 import gui.MinesweeperFrame;
 
 public class Main {

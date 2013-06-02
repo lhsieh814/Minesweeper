@@ -1,7 +1,5 @@
 package levels;
 
-import game.Minesweeper;
-
 public class Beginner implements Minesweeper {
 
     private int length = 9;

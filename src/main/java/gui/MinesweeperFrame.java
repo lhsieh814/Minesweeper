@@ -1,18 +1,19 @@
 package gui;
 
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 public class MinesweeperFrame {
 
     private JFrame jFrame;
+    private Image bombImg;
+    private Image flagImg;
 
     public MinesweeperFrame() {
         jFrame = new JFrame();
@@ -24,9 +25,21 @@ public class MinesweeperFrame {
 //        jFrame.setResizable(false);
 
         initPanels();
+        initImages();
 
 //        jFrame.pack();    // Create frame from minimum needed size
         jFrame.setVisible(true);
+
+    }
+
+    // Reads the image files
+    private void initImages() {
+        try {
+            bombImg = ImageIO.read(getClass().getClassLoader().getResource("bomb.jpg"));
+            flagImg = ImageIO.read(getClass().getClassLoader().getResource("flag.jpg"));
+        } catch (IOException e) {
+            System.out.println("Can't get the image.");
+        }
 
     }
 
@@ -49,11 +62,26 @@ public class MinesweeperFrame {
         jPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
         for (int i = 0; i < 81; i++) {
-            CustomCellButton cellButton = new CustomCellButton();
+            final CustomCellButton cellButton = new CustomCellButton();
+            cellButton.setBackground(Color.lightGray);
+
             cellButton.addMouseListener(new MouseListener() {
 
                 public void mouseClicked(MouseEvent mouseEvent) {
                     System.out.println("CLICK");
+
+                    if (SwingUtilities.isRightMouseButton(mouseEvent)) {
+                        // Right-click
+
+                        cellButton.setIcon(new ImageIcon(flagImg));
+                    } else {
+                        // Left-click
+                        cellButton.setIcon(new ImageIcon(bombImg));
+
+                    }
+
+
+
                 }
 
                 public void mousePressed(MouseEvent mouseEvent) {

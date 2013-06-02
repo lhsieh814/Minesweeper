@@ -1,5 +1,7 @@
 package game;
 
+import levels.Minesweeper;
+
 import java.util.Arrays;
 import java.util.Random;
 
