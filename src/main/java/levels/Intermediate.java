@@ -2,9 +2,9 @@ package levels;
 
 public class Intermediate implements Minesweeper {
 
-    private int length = 9;
-    private int height = 9;
-    private int bombs = 10;
+    private int length = 16;
+    private int height = 16;
+    private int bombs = 40;
 
     public Intermediate() {
 

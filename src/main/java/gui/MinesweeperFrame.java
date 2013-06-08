@@ -24,12 +24,50 @@ public class MinesweeperFrame {
         jFrame.setLayout(new BorderLayout());
 //        jFrame.setResizable(false);
 
+        jFrame.setJMenuBar(initMenuBar());
+
         initPanels();
         initImages();
 
 //        jFrame.pack();    // Create frame from minimum needed size
         jFrame.setVisible(true);
 
+    }
+
+    // Create the menu bar
+    private JMenuBar initMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu gameMenu = new JMenu("New Game");
+        JMenu helpMenu = new JMenu("Help");
+
+        // Game
+        ButtonGroup levels = new ButtonGroup();
+        JRadioButtonMenuItem beginner = new JRadioButtonMenuItem("Beginner");
+        JRadioButtonMenuItem intermediate = new JRadioButtonMenuItem("Intermediate");
+        JRadioButtonMenuItem expert = new JRadioButtonMenuItem("Expert");
+        JRadioButtonMenuItem custom = new JRadioButtonMenuItem("Custom");
+
+        levels.add(beginner);
+        levels.add(intermediate);
+        levels.add(expert);
+        levels.add(custom);
+
+        gameMenu.add(beginner);
+        gameMenu.add(intermediate);
+        gameMenu.add(expert);
+        gameMenu.add(custom);
+
+        menuBar.add(gameMenu);
+        menuBar.add(helpMenu);
+
+        // Help
+        JMenuItem howToPlay = new JMenuItem("How to play");
+        helpMenu.add(howToPlay);
+
+        menuBar.add(helpMenu);
+
+        return menuBar;
     }
 
     // Reads the image files
