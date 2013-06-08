@@ -2,17 +2,19 @@ package game;
 
 import levels.Minesweeper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
 
-    private int length;
+	private int length;
     private int height;
     private int bombs;
     private int total;
     private Space[][] game;
-
+    // TODO: add a hashmap to store bomb locations
+    
     public Board(Minesweeper minesweeper) {
         this.length = minesweeper.getLength();
         this.height = minesweeper.getHeight();
@@ -21,17 +23,44 @@ public class Board {
         initializeBoard();
     }
 
-    // Initialize total as EMPTY
+    public int getLength() {
+		return length;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public int getBombs() {
+		return bombs;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public Space[][] getGame() {
+		return game;
+	}
+	
+    /**
+     * Initiatlize the board with bombs and numbers
+     */
     private void initializeBoard() {
         game = new Space[length][height];
 
         for (int i = 0; i < height; i++) {
             Arrays.fill(game[i], new Space(Categorize.Type.EMPTY, 0));
         }
-
+        
+        // Generate numbers
+        plantBombs();
+        generateNumbers();
     }
 
-    // Randomly plant bombs
+    /**
+     * Generate random locations for bombs.
+     */
     public void plantBombs() {
         Random random = new Random();
         for (int i = 0; i < bombs; i++) {
@@ -47,7 +76,9 @@ public class Board {
         }
     }
 
-    // Generate numbers
+    /**
+     * Generate the numbers based on the bomb location.
+     */
     public void generateNumbers() {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < length; x++) {
@@ -74,7 +105,18 @@ public class Board {
         }
     }
 
-    // Print out the game numbers
+    /**
+     * Returns the number in the cell.
+     * @param x
+     * @param y
+     */
+    public int getNumber(int x, int y){
+    	return game[x][y].getNum();
+    }
+    
+    /**
+     * Helper method to print out all the cell numbers on the board.
+     */
     public void printOut() {
         for (int j = 0; j < height; j++) {
             for (int i = 0; i < length; i++) {

@@ -3,45 +3,103 @@ package gui;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 public class CustomCellButton extends JButton {
 
-    public CustomCellButton() {
-        setPreferredSize(new Dimension(41,41));
-        setContentAreaFilled(false);
-        setFocusPainted(false);
-        setBorderPainted(false);
-        setOpaque(true);
-        setContentAreaFilled(false);
-//        try {
-//            Image img = ImageIO.read(getClass().getClassLoader().getResource("flag.jpg"));
-//            setIcon(new ImageIcon(img));
-//        } catch (IOException e) {
-//            System.out.println("Can't get the image.");
-//        }
+	private final int x;
+	private final int y;
+	private final int num;
 
-    }
+	public CustomCellButton(final int x, final int y, final int num) {
+		this.x = x;
+		this.y = y;
+		this.num = num;
 
-//    @Override
-//    protected void paintComponent(Graphics g) {
-//        g.setColor(Color.BLUE);
-//
-////        GradientPaint paint = new GradientPaint(getWidth(), getHeight(), g.getColor(),
-////                getWidth(), getHeight(), Color.GREEN, false);
-//
-//        Graphics2D g2 = (Graphics2D) g;
-////        g2.setPaint(paint);
-////        g2.fillRect(0,0,38,38);
-//        super.paintComponent(g);
-//    }
+		setAttributes();
 
-    @Override
-    protected void paintBorder(Graphics g) {
-        g.setColor(Color.BLACK);
-        g.drawRect(0, 0, (int) getPreferredSize().getWidth(), (int) getPreferredSize().getHeight());
-    }
+		addMouseListener(getMouseListener());
+
+	}
+
+	private void setAttributes() {
+		setPreferredSize(new Dimension(41, 41));
+		setContentAreaFilled(false);
+		setFocusPainted(false);
+		setBorderPainted(false);
+		setOpaque(true);
+		setContentAreaFilled(false);
+		setBackground(Color.lightGray);
+	}
+
+	private MouseListener getMouseListener() {
+		return new MouseListener() {
+
+			public void mouseClicked(MouseEvent mouseEvent) {
+
+				if (SwingUtilities.isRightMouseButton(mouseEvent)) {
+					// Right-click
+
+				} else {
+					// Left-click
+
+					switch (num) {
+					case -1:
+						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
+						MinesweeperFrame.explodeBombs();
+						break;
+					case 0:
+						System.out.println("EMPTY");
+						break;
+					default:
+						System.out.println(num);
+						break;
+					}
+
+				}
+			}
+
+			public void mousePressed(MouseEvent mouseEvent) {
+			}
+
+			public void mouseReleased(MouseEvent mouseEvent) {
+			}
+
+			public void mouseEntered(MouseEvent mouseEvent) {
+			}
+
+			public void mouseExited(MouseEvent mouseEvent) {
+			}
+
+		};
+
+	}
+
+	// @Override
+	// protected void paintComponent(Graphics g) {
+	// g.setColor(Color.BLUE);
+	//
+	// // GradientPaint paint = new GradientPaint(getWidth(), getHeight(),
+	// g.getColor(),
+	// // getWidth(), getHeight(), Color.GREEN, false);
+	//
+	// Graphics2D g2 = (Graphics2D) g;
+	// // g2.setPaint(paint);
+	// // g2.fillRect(0,0,38,38);
+	// super.paintComponent(g);
+	// }
+
+	@Override
+	protected void paintBorder(Graphics g) {
+		g.setColor(Color.BLACK);
+		g.drawRect(0, 0, (int) getPreferredSize().getWidth(),
+				(int) getPreferredSize().getHeight());
+	}
 }
