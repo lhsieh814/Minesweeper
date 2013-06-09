@@ -18,8 +18,6 @@ public class CustomCellButton extends JButton {
 	private final int y;
 	private final int num;
 
-    private boolean gameOver = false;
-
     public CustomCellButton(final int x, final int y, final int num) {
 		this.x = x;
 		this.y = y;
@@ -35,7 +33,7 @@ public class CustomCellButton extends JButton {
 		setPreferredSize(new Dimension(41, 41));
 		setContentAreaFilled(false);
 		setFocusPainted(false);
-		setBorderPainted(false);
+		setBorderPainted(true);
 		setOpaque(true);
 		setContentAreaFilled(false);
 		setBackground(Color.lightGray);
@@ -49,25 +47,25 @@ public class CustomCellButton extends JButton {
 
 				if (SwingUtilities.isRightMouseButton(mouseEvent)) {
 					// Right-click
+					if (!MinesweeperFrame.gameOver) {
+						setBackground(Color.green);
+					}
 
 				} else {
 					// Left-click
-
+					System.out.println(MinesweeperFrame.gameOver);
 					switch (num) {
 					case -1:
-                        gameOver = true;
+                        MinesweeperFrame.gameOver = true;
    						MinesweeperFrame.explodeBombs();
 						break;
 					case 0:
-						if (gameOver) {
-                            System.out.println("EMPTY");
-                        } else {
-                            System.out.println("NO");
-                        }
+						if (!MinesweeperFrame.gameOver) {
+							setText("" + num);
+						}
 						break;
 					default:
-						if (gameOver) {
-                            System.out.println(num);
+						if (!MinesweeperFrame.gameOver) {
                             setText("" + num);
                         }
 						break;
@@ -106,10 +104,10 @@ public class CustomCellButton extends JButton {
 	// super.paintComponent(g);
 	// }
 
-	@Override
-	protected void paintBorder(Graphics g) {
-		g.setColor(Color.BLACK);
-		g.drawRect(0, 0, (int) getPreferredSize().getWidth(),
-				(int) getPreferredSize().getHeight());
-	}
+//	@Override
+//	protected void paintBorder(Graphics g) {
+//		g.setColor(Color.BLACK);
+//		g.drawRect(0, 0, (int) getPreferredSize().getWidth(),
+//				(int) getPreferredSize().getHeight());
+//	}
 }

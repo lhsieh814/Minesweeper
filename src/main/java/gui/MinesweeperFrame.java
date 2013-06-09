@@ -22,6 +22,7 @@ public class MinesweeperFrame {
 	private Image bombImg;
 	private Image flagImg;
 	private static CustomCellButton [][] grid;
+	public static boolean gameOver = false;
 
 	private static Board board;
 
@@ -41,7 +42,7 @@ public class MinesweeperFrame {
 		jFrame.setJMenuBar(initMenuBar());
 
 		initPanels();
-		initImages();
+//		initImages();
 
 		jFrame.pack(); // Create frame from minimum needed size
 		jFrame.setVisible(true);
@@ -146,6 +147,7 @@ public class MinesweeperFrame {
 	 * Display the bombs.
 	 */
 	public static void explodeBombs() {
+		gameOver = true;
         Point[] points = board.getPoints();
 
         for (int i = 0; i < points.length; i++) {
