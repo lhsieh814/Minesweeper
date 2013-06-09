@@ -2,9 +2,8 @@ package game;
 
 import levels.Minesweeper;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.awt.*;
+import java.util.*;
 
 public class Board {
 
@@ -13,14 +12,18 @@ public class Board {
     private int bombs;
     private int total;
     private Space[][] game;
-    // TODO: add a hashmap to store bomb locations
-    
+    private Map<Integer, Integer> bombList;
+    private Point[] points;
+
     public Board(Minesweeper minesweeper) {
         this.length = minesweeper.getLength();
         this.height = minesweeper.getHeight();
         this.bombs = minesweeper.getBombs();
         this.total = length * height;
+        points = new Point[bombs];
+
         initializeBoard();
+        printOut();
     }
 
     public int getLength() {
@@ -42,7 +45,15 @@ public class Board {
 	public Space[][] getGame() {
 		return game;
 	}
-	
+
+    public Map<Integer, Integer> getBombList() {
+        return bombList;
+    }
+
+    public Point[] getPoints() {
+        return points;
+    }
+
     /**
      * Initiatlize the board with bombs and numbers
      */
@@ -73,6 +84,7 @@ public class Board {
                 l = j % length;
             }
             game[l][h] = new Space(Categorize.Type.BOMB, -1);
+            points[i] = new Point(l,h);
         }
     }
 

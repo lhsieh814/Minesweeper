@@ -18,7 +18,9 @@ public class CustomCellButton extends JButton {
 	private final int y;
 	private final int num;
 
-	public CustomCellButton(final int x, final int y, final int num) {
+    private boolean gameOver = false;
+
+    public CustomCellButton(final int x, final int y, final int num) {
 		this.x = x;
 		this.y = y;
 		this.num = num;
@@ -37,6 +39,7 @@ public class CustomCellButton extends JButton {
 		setOpaque(true);
 		setContentAreaFilled(false);
 		setBackground(Color.lightGray);
+
 	}
 
 	private MouseListener getMouseListener() {
@@ -52,14 +55,21 @@ public class CustomCellButton extends JButton {
 
 					switch (num) {
 					case -1:
-						System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
-						MinesweeperFrame.explodeBombs();
+                        gameOver = true;
+   						MinesweeperFrame.explodeBombs();
 						break;
 					case 0:
-						System.out.println("EMPTY");
+						if (gameOver) {
+                            System.out.println("EMPTY");
+                        } else {
+                            System.out.println("NO");
+                        }
 						break;
 					default:
-						System.out.println(num);
+						if (gameOver) {
+                            System.out.println(num);
+                            setText("" + num);
+                        }
 						break;
 					}
 

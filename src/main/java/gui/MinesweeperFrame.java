@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import levels.Beginner;
 
@@ -35,12 +37,13 @@ public class MinesweeperFrame {
 		jFrame.setLayout(new BorderLayout());
 		// jFrame.setResizable(false);
 
+
 		jFrame.setJMenuBar(initMenuBar());
 
 		initPanels();
-		// initImages();
+		initImages();
 
-		// jFrame.pack(); // Create frame from minimum needed size
+		jFrame.pack(); // Create frame from minimum needed size
 		jFrame.setVisible(true);
 
 	}
@@ -140,13 +143,16 @@ public class MinesweeperFrame {
 	}
 	
 	/**
-	 * Display the 
+	 * Display the bombs.
 	 */
 	public static void explodeBombs() {
-		for (int j = 0; j < board.getHeight(); j++) {
-			for (int i = 0; i < board.getLength(); i++) {
-				grid[i][j].setBackground(Color.RED);
-			}
-		}
+        Point[] points = board.getPoints();
+
+        for (int i = 0; i < points.length; i++) {
+            int x = (int) points[i].getX();
+            int y = (int) points[i].getY();
+            grid[x][y].setBackground(Color.RED);
+
+        }
 	}
 }
