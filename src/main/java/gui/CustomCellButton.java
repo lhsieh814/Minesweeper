@@ -1,9 +1,9 @@
 package gui;
 
+import org.junit.experimental.theories.DataPoints;
+
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -37,7 +37,6 @@ public class CustomCellButton extends JButton {
 		setOpaque(true);
 		setContentAreaFilled(false);
 		setBackground(Color.lightGray);
-
 	}
 
 	private MouseListener getMouseListener() {
@@ -47,13 +46,47 @@ public class CustomCellButton extends JButton {
 
 				if (SwingUtilities.isRightMouseButton(mouseEvent)) {
 					// Right-click
-					if (!MinesweeperFrame.gameOver) {
-						setBackground(Color.green);
-					}
+                    if ("".equals(getText())) {
+                        if (!MinesweeperFrame.gameOver) {
+
+                            if (getBackground() == Color.BLUE) {
+                                setBackground(Color.lightGray);
+                                MinesweeperFrame.bombGuess[x][y] = false;
+                                MinesweeperFrame.bombCount -- ;
+                            } else if (getBackground() == Color.lightGray) {
+                                setBackground(Color.BLUE);
+                                MinesweeperFrame.bombGuess[x][y] = true;
+                                MinesweeperFrame.bombCount++;
+                            }
+
+                            if (MinesweeperFrame.bombCount == MinesweeperFrame.board.getBombs()) {
+                                // Check if all the bombs are found
+                                Point[] bombList = MinesweeperFrame.board.getBombList();
+                                boolean done = true;
+                                for (int i = 0; i < bombList.length; i++) {
+                                    Point point = bombList[i];
+                                    int xValue = (int) point.getX();
+                                    int yValue = (int) point.getY();
+                                    if (MinesweeperFrame.bombGuess[xValue][yValue] == false) {
+                                        done = false;
+                                    }
+
+                                }
+                                if (done) {
+                                    MinesweeperFrame.gameOver = true;
+                                    MinesweeperFrame.win();
+                                }
+                            }
+                        }
+
+   					}
 
 				} else {
 					// Left-click
-					System.out.println(MinesweeperFrame.gameOver);
+
+                    // Check if all the bombs are found
+
+
 					switch (num) {
 					case -1:
                         MinesweeperFrame.gameOver = true;

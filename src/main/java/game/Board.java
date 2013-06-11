@@ -12,15 +12,14 @@ public class Board {
     private int bombs;
     private int total;
     private Space[][] game;
-    private Map<Integer, Integer> bombList;
-    private Point[] points;
+    private Point[] bombList;
 
     public Board(Minesweeper minesweeper) {
         this.length = minesweeper.getLength();
         this.height = minesweeper.getHeight();
         this.bombs = minesweeper.getBombs();
         this.total = length * height;
-        points = new Point[bombs];
+        bombList = new Point[bombs];
 
         initializeBoard();
         printOut();
@@ -46,12 +45,8 @@ public class Board {
 		return game;
 	}
 
-    public Map<Integer, Integer> getBombList() {
+    public Point[] getBombList() {
         return bombList;
-    }
-
-    public Point[] getPoints() {
-        return points;
     }
 
     /**
@@ -84,7 +79,7 @@ public class Board {
                 l = j % length;
             }
             game[l][h] = new Space(Categorize.Type.BOMB, -1);
-            points[i] = new Point(l,h);
+            bombList[i] = new Point(l,h);
         }
     }
 

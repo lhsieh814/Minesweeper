@@ -24,7 +24,10 @@ public class MinesweeperFrame {
 	private static CustomCellButton [][] grid;
 	public static boolean gameOver = false;
 
-	private static Board board;
+    public static int bombCount;
+    public static boolean[][] bombGuess;
+
+	public static Board board;
 
 	public MinesweeperFrame() {
 		// Default to beginner level
@@ -47,6 +50,8 @@ public class MinesweeperFrame {
 		jFrame.pack(); // Create frame from minimum needed size
 		jFrame.setVisible(true);
 
+        bombCount = 0;
+        bombGuess = new boolean[board.getLength()][board.getHeight()];
 	}
 
 	/**
@@ -148,7 +153,7 @@ public class MinesweeperFrame {
 	 */
 	public static void explodeBombs() {
 		gameOver = true;
-        Point[] points = board.getPoints();
+        Point[] points = board.getBombList();
 
         for (int i = 0; i < points.length; i++) {
             int x = (int) points[i].getX();
@@ -157,4 +162,19 @@ public class MinesweeperFrame {
 
         }
 	}
+
+    /**
+     * Won the game. Display the bombs.
+     */
+    public static void win() {
+        gameOver = true;
+        Point[] points = board.getBombList();
+
+        for (int i = 0; i < points.length; i++) {
+            int x = (int) points[i].getX();
+            int y = (int) points[i].getY();
+            grid[x][y].setBackground(Color.GREEN);
+
+        }
+    }
 }
