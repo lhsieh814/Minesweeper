@@ -1,7 +1,7 @@
 package gui;
 
 import game.Status;
-import org.junit.experimental.theories.DataPoints;
+//import org.junit.experimental.theories.DataPoints;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -44,7 +44,13 @@ public class CustomCellButton extends JButton {
         return new MouseListener() {
 
             public void mouseClicked(MouseEvent mouseEvent) {
+            }
 
+            public void mousePressed(MouseEvent mouseEvent) {
+            }
+
+            public void mouseReleased(MouseEvent mouseEvent) {
+            	
                 if (SwingUtilities.isRightMouseButton(mouseEvent)) {
                     // Right-click
                     if ("".equals(getText())) {
@@ -113,12 +119,6 @@ public class CustomCellButton extends JButton {
                         }
                     }
                 }
-            }
-
-            public void mousePressed(MouseEvent mouseEvent) {
-            }
-
-            public void mouseReleased(MouseEvent mouseEvent) {
             }
 
             public void mouseEntered(MouseEvent mouseEvent) {
