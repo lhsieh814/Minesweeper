@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import game.Status;
 import levels.Beginner;
 
 public class MinesweeperFrame {
@@ -28,10 +29,12 @@ public class MinesweeperFrame {
     public static boolean[][] bombGuess;
 
 	public static Board board;
+    public static Status status;
 
 	public MinesweeperFrame() {
 		// Default to beginner level
 		board = new Board(new Beginner());
+        status = new Status(board);
 		
 		jFrame = new JFrame();
 		jFrame.setTitle("Minesweeper");
@@ -50,7 +53,7 @@ public class MinesweeperFrame {
 		jFrame.pack(); // Create frame from minimum needed size
 		jFrame.setVisible(true);
 
-        bombCount = 0;
+        bombCount = board.getBombs();
         bombGuess = new boolean[board.getLength()][board.getHeight()];
 	}
 
