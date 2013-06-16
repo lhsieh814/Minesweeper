@@ -102,6 +102,9 @@ public class CustomCellButton extends JButton {
                             case 0:
                                 if (!MinesweeperFrame.gameOver) {
                                     setText("" + num);
+                                    // TODO: Need to activate all the other adjacent 0's
+                                    MinesweeperFrame.activateZeros(x, y);
+
                                 }
                                 break;
                             default:

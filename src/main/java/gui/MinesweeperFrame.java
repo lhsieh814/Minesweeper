@@ -180,4 +180,45 @@ public class MinesweeperFrame {
 
         }
     }
+
+    /**
+     * Activate the adjacent 0's.
+     * Looks at the left, right, top and bottom cells.
+     */
+    public static void activateZeros(int x, int y) {
+
+        int xMin = x - 1;
+        int xMax = x + 1;
+        int yMin = y - 1;
+        int yMax = y + 1;
+
+        // Left
+        if (xMin >= 0) {
+            setTextForZeros(xMin, y);
+        }
+
+        // Top
+        if (yMin >= 0) {
+            setTextForZeros(x, yMin);
+        }
+
+        // Bottom
+        if (yMax != board.getHeight()) {
+            setTextForZeros(x, yMax);
+        }
+
+        // Right
+        if (xMax != board.getLength()) {
+            setTextForZeros(xMax, y);
+        }
+    }
+
+    private static void setTextForZeros(int x, int y) {
+        if (board.isZero(x, y)) {
+            grid[x][y].setText("0");
+            activateZeros(x, y);
+        } else {
+            grid[x][y].setText("" + board.getNumber(x, y));
+        }
+    }
 }

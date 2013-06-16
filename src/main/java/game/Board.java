@@ -133,4 +133,8 @@ public class Board {
         }
     }
 
+    public boolean isZero(int x, int y) {
+        return (game[x][y].getNum() == 0 );
+    }
+
 }
