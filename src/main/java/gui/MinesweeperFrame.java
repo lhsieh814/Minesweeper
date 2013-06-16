@@ -187,33 +187,20 @@ public class MinesweeperFrame {
      */
     public static void activateZeros(int x, int y) {
 
-        int xMin = x - 1;
-        int xMax = x + 1;
-        int yMin = y - 1;
-        int yMax = y + 1;
-
-        // Left
-        if (xMin >= 0) {
-            setTextForZeros(xMin, y);
-        }
-
-        // Top
-        if (yMin >= 0) {
-            setTextForZeros(x, yMin);
-        }
-
-        // Bottom
-        if (yMax != board.getHeight()) {
-            setTextForZeros(x, yMax);
-        }
-
-        // Right
-        if (xMax != board.getLength()) {
-            setTextForZeros(xMax, y);
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                if (i >= 0 && i != board.getLength() && j >= 0 && j != board.getHeight()) {
+                	if (grid[i][j].getText().isEmpty()) {
+                		setTextForZeros(i, j);
+                	}
+                }
+            }
         }
     }
 
     private static void setTextForZeros(int x, int y) {
+    	Status.numCount--;
+    	
         if (board.isZero(x, y)) {
             grid[x][y].setText("0");
             activateZeros(x, y);
