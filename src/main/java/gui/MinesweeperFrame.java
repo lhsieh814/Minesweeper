@@ -1,6 +1,11 @@
 package gui;
 
 import game.Board;
+import game.Status;
+import levels.Beginner;
+import levels.Custom;
+import levels.Expert;
+import levels.Intermediate;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -8,14 +13,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import game.Status;
-import levels.Beginner;
 
 public class MinesweeperFrame {
 
@@ -39,7 +37,7 @@ public class MinesweeperFrame {
 		jFrame = new JFrame();
 		jFrame.setTitle("Minesweeper");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jFrame.setSize(400, 450);
+//		jFrame.setSize(400, 450);
 		jFrame.setBackground(Color.white);
 		jFrame.setLayout(new BorderLayout());
 		// jFrame.setResizable(false);
@@ -67,13 +65,35 @@ public class MinesweeperFrame {
 		JMenu gameMenu = new JMenu("New Game");
 		JMenu helpMenu = new JMenu("Help");
 
+        ActionListener radioButtonListener = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String selectedLevel = actionEvent.getActionCommand();
+                System.out.println(selectedLevel);
+
+                if (selectedLevel.equals("Beginner")) {
+                    board = new Board(new Beginner());
+                } else if (selectedLevel.equals("Intermediate")) {
+                    board = new Board(new Intermediate());
+                } else if (selectedLevel.equals("Expert")) {
+                    board = new Board(new Expert());
+                } else {
+                    board = new Board(new Custom());
+                }
+
+            }
+        };
+
 		// Game
 		ButtonGroup levels = new ButtonGroup();
-		JRadioButtonMenuItem beginner = new JRadioButtonMenuItem("Beginner");
-		JRadioButtonMenuItem intermediate = new JRadioButtonMenuItem(
-				"Intermediate");
+		JRadioButtonMenuItem beginner = new JRadioButtonMenuItem("Beginner", true);
+        beginner.addActionListener(radioButtonListener);
+		JRadioButtonMenuItem intermediate = new JRadioButtonMenuItem("Intermediate");
+        intermediate.addActionListener(radioButtonListener);
 		JRadioButtonMenuItem expert = new JRadioButtonMenuItem("Expert");
+        expert.addActionListener(radioButtonListener);
 		JRadioButtonMenuItem custom = new JRadioButtonMenuItem("Custom");
+        custom.addActionListener(radioButtonListener);
 
 		levels.add(beginner);
 		levels.add(intermediate);
@@ -150,6 +170,8 @@ public class MinesweeperFrame {
 
 		return jPanel;
 	}
+
+
 	
 	/**
 	 * Display the bombs.
