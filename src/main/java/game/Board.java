@@ -56,7 +56,7 @@ public class Board {
         game = new Space[length][height];
 
         for (int i = 0; i < height; i++) {
-            Arrays.fill(game[i], new Space(Categorize.Type.EMPTY, 0));
+            Arrays.fill(game[i], new Space(0));
         }
         
         // Generate numbers
@@ -73,12 +73,12 @@ public class Board {
             int j = random.nextInt(total);
             int h = j / length;
             int l = j % length;
-            while (game[l][h].getType() == Categorize.Type.BOMB) {
+            while (game[l][h].getNum() == -1) {
                 j = random.nextInt(total);
                 h = j / length;
                 l = j % length;
             }
-            game[l][h] = new Space(Categorize.Type.BOMB, -1);
+            game[l][h] = new Space(-1);
             bombList[i] = new Point(l,h);
         }
     }
@@ -90,21 +90,21 @@ public class Board {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < length; x++) {
                 // Not a bomb, then calculate number
-                if (game[x][y].getType() != Categorize.Type.BOMB) {
+                if (game[x][y].getNum() != -1) {
                     int count = 0;
                     // Go around space
                     for (int i = x - 1; i <= x + 1; i++) {
                         for (int j = y - 1; j <= y + 1; j++) {
                             // Make sure not checking an out-of-bound space
                             if (i >= 0 && i != length && j >= 0 && j != height) {
-                                if (game[i][j].getType() == Categorize.Type.BOMB) {
+                                if (game[i][j].getNum() == -1) {
                                     count++;
                                 }
                             }
                         }
                     }
                     if (count != 0) {
-                        game[x][y] = new Space(Categorize.Type.NUMBER, count);
+                        game[x][y] = new Space(count);
                     }
                 }
             }
@@ -116,9 +116,20 @@ public class Board {
      * Returns the number in the cell.
      * @param x
      * @param y
+     * @return the num
      */
-    public int getNumber(int x, int y){
+    public int getNumber(int x, int y) {
     	return game[x][y].getNum();
+    }
+    
+    /**
+     * Returns whether the cell is a guess (right-click)
+     * @param x
+     * @param y
+     * @return if it is a guess
+     */
+    public boolean isGuess(int x, int y) {
+    	return game[x][y].isGuess();
     }
     
     /**

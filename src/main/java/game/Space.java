@@ -11,24 +11,17 @@ package game;
  */
 public class Space {
 
-    private Categorize.Type type;
     private int num;
+    private boolean guess;
 
-    public Space() {
+
+	public Space() {
 
     }
 
-    public Space(Categorize.Type type, int num) {
-        this.type = type;
+    public Space(int num) {
         this.num = num;
-    }
-
-    public Categorize.Type getType() {
-        return type;
-    }
-
-    public void setType(Categorize.Type type) {
-        this.type = type;
+        guess = false;
     }
 
     public int getNum() {
@@ -38,6 +31,14 @@ public class Space {
     public void setNum(int num) {
         this.num = num;
     }
+    
+    public boolean isGuess() {
+		return guess;
+	}
+
+	public void setGuess(boolean guess) {
+		this.guess = guess;
+	}
 
     public String toString() {
         return Integer.toString(num);
