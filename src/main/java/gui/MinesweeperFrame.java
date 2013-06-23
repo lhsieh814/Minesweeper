@@ -29,6 +29,8 @@ public class MinesweeperFrame {
 	public static Board board;
     public static Status status;
 
+    private JPanel gridPanel;
+
 	public MinesweeperFrame() {
 		// Default to beginner level
 		board = new Board(new Beginner());
@@ -55,6 +57,25 @@ public class MinesweeperFrame {
         bombGuess = new boolean[board.getLength()][board.getHeight()];
 	}
 
+    /**
+     * Create new game. Reinitialize components.
+     */
+    private void newGame() {
+        bombCount = board.getBombs();
+        bombGuess = new boolean[board.getLength()][board.getHeight()];
+        System.out.println("Length = " + board.getLength() + " Height = " + board.getHeight());
+
+        jFrame.remove(gridPanel);
+        gridPanel = createGridPanel();
+        jFrame.add(gridPanel);
+        jFrame.validate();
+        jFrame.repaint();
+
+        jFrame.pack(); // Create frame from minimum needed size
+        jFrame.setVisible(true);
+
+    }
+
 	/**
 	 * Creates the menu bar.
 	 * @return
@@ -73,10 +94,13 @@ public class MinesweeperFrame {
 
                 if (selectedLevel.equals("Beginner")) {
                     board = new Board(new Beginner());
+                    newGame();
                 } else if (selectedLevel.equals("Intermediate")) {
                     board = new Board(new Intermediate());
+                    newGame();
                 } else if (selectedLevel.equals("Expert")) {
                     board = new Board(new Expert());
+                    newGame();
                 } else {
                     board = new Board(new Custom());
                 }
@@ -136,8 +160,9 @@ public class MinesweeperFrame {
 	 * Initialize the panels.
 	 */
 	private void initPanels() {
+        gridPanel = createGridPanel();
 		jFrame.getContentPane().add(createTopPanel(), BorderLayout.NORTH);
-		jFrame.getContentPane().add(createGridPanel(), BorderLayout.CENTER);
+		jFrame.getContentPane().add(gridPanel, BorderLayout.CENTER);
 	}
 
 	/**

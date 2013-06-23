@@ -10,6 +10,9 @@ public class Status {
 
     public boolean gameOver;
 
+    public Space[][] game;
+
+
     public Status(Board board) {
         bombCount = board.getBombs();
         numCount = board.getTotal() - bombCount;
