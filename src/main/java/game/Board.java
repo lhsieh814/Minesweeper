@@ -55,7 +55,7 @@ public class Board {
     private void initializeBoard() {
         game = new Space[length][height];
 
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < length; i++) {
             Arrays.fill(game[i], new Space(0));
         }
         

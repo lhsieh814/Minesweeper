@@ -63,8 +63,6 @@ public class MinesweeperFrame {
         bombGuess = new boolean[board.getLength()][board.getHeight()];
         gameOver = false;
         
-        System.out.println("Length = " + board.getLength() + " Height = " + board.getHeight());
-
         jFrame.remove(gridPanel);
         gridPanel = createGridPanel();
         jFrame.add(gridPanel);
