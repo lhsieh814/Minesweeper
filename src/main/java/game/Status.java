@@ -5,7 +5,8 @@ public class Status {
 	public static final int EMPTY = 0;
 	public static final int BOMB = -1;
 
-    public static int bombCount;
+    // total = bombCount + numCount
+	public static int bombCount;
     public static int numCount;
 
     public boolean gameOver;

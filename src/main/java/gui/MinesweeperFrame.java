@@ -39,11 +39,9 @@ public class MinesweeperFrame {
 		jFrame = new JFrame();
 		jFrame.setTitle("Minesweeper");
 		jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		jFrame.setSize(400, 450);
 		jFrame.setBackground(Color.white);
 		jFrame.setLayout(new BorderLayout());
 		// jFrame.setResizable(false);
-
 
 		jFrame.setJMenuBar(initMenuBar());
 
@@ -63,6 +61,8 @@ public class MinesweeperFrame {
     private void newGame() {
         bombCount = board.getBombs();
         bombGuess = new boolean[board.getLength()][board.getHeight()];
+        gameOver = false;
+        
         System.out.println("Length = " + board.getLength() + " Height = " + board.getHeight());
 
         jFrame.remove(gridPanel);
@@ -170,8 +170,10 @@ public class MinesweeperFrame {
 	 * @return
 	 */
 	private JPanel createTopPanel() {
-		JPanel jPanel = new JPanel();
-		jPanel.add(new JLabel("Start playing..."));
+		JPanel jPanel = new JPanel(new BorderLayout());
+		jPanel.add(new JLabel("000", SwingConstants.LEFT), BorderLayout.LINE_START);
+		jPanel.add(new JLabel("Start playing...", SwingConstants.CENTER), BorderLayout.CENTER);
+		jPanel.add(new JLabel("timer", SwingConstants.RIGHT), BorderLayout.LINE_END);
 		return jPanel;
 	}
 
@@ -195,8 +197,6 @@ public class MinesweeperFrame {
 
 		return jPanel;
 	}
-
-
 	
 	/**
 	 * Display the bombs.
