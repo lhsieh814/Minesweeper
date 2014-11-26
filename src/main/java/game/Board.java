@@ -22,7 +22,7 @@ public class Board {
         bombList = new Point[bombs];
 
         initializeBoard();
-        printOut();
+//        printOut();
     }
 
     public int getLength() {

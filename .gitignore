@@ -2,7 +2,6 @@
 bin
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -11,6 +10,7 @@ log/
 target/
 
 # IntelliJ
+.idea/*
 */.idea/workspace.xml
 .idea/workspace.xml
 */.idea/tasks.xml
